@@ -60,11 +60,15 @@ public class MainActivity extends AppCompatActivity {
     class EventAsyncTask extends AsyncTask<String, Void, Event>{
         @Override
         protected Event doInBackground(String... urls) {
+            if(urls.length < 1 || urls[0] == null)
+                return null;
             return Utils.fetchEarthquakeData(urls[0]);
         }
 
         @Override
         protected void onPostExecute(Event event) {
+            if(result == null)
+                return;
             updateUi(event);
         }
     }
