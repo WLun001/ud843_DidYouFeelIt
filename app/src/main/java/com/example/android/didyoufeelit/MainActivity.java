@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Perform the HTTP request for earthquake data and process the response.
         EventAsyncTask asyncTask = new EventAsyncTask();
-        asyncTask.execute();
+        asyncTask.execute(USGS_REQUEST_URL);
 
     }
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     class EventAsyncTask extends AsyncTask<String, Void, Event>{
         @Override
         protected Event doInBackground(String... urls) {
-            return Utils.fetchEarthquakeData(USGS_REQUEST_URL);
+            return Utils.fetchEarthquakeData(urls[0]);
         }
 
         @Override
